@@ -1,0 +1,35 @@
+from docx import Document
+
+
+
+# Load the document again to ensure integrity
+
+file_path = '/mnt/data/Emplois_Airbus_Marignane.docx'
+
+doc = Document(file_path)
+
+
+
+# Activate hyperlinks
+
+for para in doc.paragraphs:
+
+    for run in para.runs:
+
+        if "http" in run.text:
+
+            run.font.color.theme_color = 10  # Blue color for hyperlinks
+
+            run.underline = True
+
+
+
+# Save the modified document with a new name to avoid overwriting issues
+
+updated_file_path = '/mnt/data/Emplois_Airbus_Marignane_updated.docx'
+
+doc.save(updated_file_path)
+
+
+
+updated_file_path
